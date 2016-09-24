@@ -9,7 +9,7 @@
 namespace Commands;
 
 use Helpers\CommandHelper;
-class Command
+abstract class Command
 {
     var $params;
     var $app_code_path;
@@ -25,5 +25,7 @@ class Command
         $this->app_code_path = MAGENTO_ROOT.'app'.DS.'code'.DS;
         $this->helper = new CommandHelper($this);
     }
+
+    abstract function execute();
 
 }
