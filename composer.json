@@ -1,5 +1,0 @@
-{
-    "require": {
-        "gossi/php-code-generator": "^0.3.2"
-    }
-}
