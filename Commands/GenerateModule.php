@@ -8,27 +8,15 @@
 
 namespace Commands;
 
+
 /**
  * Generates a very basic Magento Module
  * Class GenerateModule
  * @package Commands
  *
  */
-class GenerateModule
+class GenerateModule extends Command
 {
-    var $params;
-
-    var $app_code_path;
-    var $package_name;
-    var $module_name;
-
-    function __construct($argv)
-    {
-        $this->params = $argv;
-        $this->package_name = $argv[2];
-        $this->module_name = $argv[3];
-        $this->app_code_path = MAGENTO_ROOT.'app'.DS.'code'.DS;
-    }
 
     function execute()
     {
