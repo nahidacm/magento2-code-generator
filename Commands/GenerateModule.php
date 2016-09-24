@@ -20,6 +20,7 @@ class GenerateModule extends Command
     function execute()
     {
         $this->writeRegistrationFile();
+        $this->writeComposerFile();
 
         return "\n Done..";
     }
@@ -33,6 +34,23 @@ class GenerateModule extends Command
         $data = array(
             'package_name'=>$this->package_name,
             'module_name'=>$this->module_name
+        );
+
+        $output_file_contents = $this->helper->replacePlaceHolders($template_file_contents, $data);
+
+        $this->helper->writeCodeFile($output_file_path, $output_file_contents);
+    }
+    function writeComposerFile()
+    {
+        $template_file_path = ROOT.'templates/json/composer.tpl';
+        $output_file_path = $this->helper->getModuleBasePath().'composer.json';
+
+        $template_file_contents = file_get_contents($template_file_path);
+        $data = array(
+            'package_name'=>$this->package_name,
+            'module_name'=>$this->module_name,
+            'package_name_lc'=>strtolower($this->package_name),
+            'module_name_lc'=>strtolower($this->module_name)
         );
 
         $output_file_contents = $this->helper->replacePlaceHolders($template_file_contents, $data);
