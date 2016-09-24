@@ -6,7 +6,15 @@
  * Time: 06.13
  */
 
-define('ROOT', __DIR__ . DIRECTORY_SEPARATOR);
+
+define('DS',DIRECTORY_SEPARATOR);
+
+/** @const Magento installation path */
+//define('MAGENTO_ROOT','..'.DS. __DIR__ . DS);
+define('MAGENTO_ROOT',__DIR__ . DS);
+
+/** @const This mdule creator base path */
+define('ROOT', __DIR__ . DS);
 
 if (!isset($argv[1])) {
     echo " Command parameter missing...\n Please enter command name (e.g. GenerateModule): ";
@@ -18,13 +26,13 @@ if (!isset($argv[1])) {
 
 $class_name = '\Commands\\' . $main_command;
 
-$generate_module = new $class_name();
-echo $generate_module->execute($argv);
+$generate_module = new $class_name($argv);
+echo $generate_module->execute();
 
 function __autoload($classname)
 {
     $namespace = substr($classname, 0, strrpos($classname, '\\'));
-    $namespace = str_replace('\\', DIRECTORY_SEPARATOR, $classname);
+    $namespace = str_replace('\\', DS, $classname);
     $classPath = ROOT . str_replace('\\', '/', $namespace) . '.php';
 
     if (is_readable($classPath)) {
