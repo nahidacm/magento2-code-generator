@@ -8,13 +8,14 @@
 
 namespace Commands;
 
-
+use Helpers\CommandHelper;
 class Command
 {
     var $params;
     var $app_code_path;
     var $package_name;
     var $module_name;
+    var $helper;
 
     function __construct($argv)
     {
@@ -22,6 +23,7 @@ class Command
         $this->package_name = $argv[2];
         $this->module_name = $argv[3];
         $this->app_code_path = MAGENTO_ROOT.'app'.DS.'code'.DS;
+        $this->helper = new CommandHelper($this);
     }
 
 }
