@@ -10,8 +10,8 @@
 define('DS',DIRECTORY_SEPARATOR);
 
 /** @const Magento installation path */
-//define('MAGENTO_ROOT','..'.DS. __DIR__ . DS);
-define('MAGENTO_ROOT',__DIR__ . DS);
+define('MAGENTO_ROOT', __DIR__ . DS.'..'.DS);
+//define('MAGENTO_ROOT',__DIR__ . DS);
 
 /** @const This mdule creator base path */
 define('ROOT', __DIR__ . DS);
