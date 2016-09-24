@@ -25,8 +25,8 @@ class CommandHelper
 
     function writeCodeFile($file_path, $content)
     {
-        if(!file_exists($this->getModuleBasePath()))
-            mkdir($this->getModuleBasePath(), 0755, true);
+        if(!file_exists(dirname($file_path)))
+            mkdir(dirname($file_path), 0755, true);
 
         $output_file = fopen($file_path, "w") or die("Unable to open file: ".$file_path);
         fwrite($output_file, $content);

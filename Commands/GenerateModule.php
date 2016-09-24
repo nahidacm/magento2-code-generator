@@ -21,6 +21,7 @@ class GenerateModule extends Command
     {
         $this->writeRegistrationFile();
         $this->writeComposerFile();
+        $this->writeModuleXmlFile();
 
         return "\n Done..";
     }
@@ -51,6 +52,23 @@ class GenerateModule extends Command
             'module_name'=>$this->module_name,
             'package_name_lc'=>strtolower($this->package_name),
             'module_name_lc'=>strtolower($this->module_name)
+        );
+
+        $output_file_contents = $this->helper->replacePlaceHolders($template_file_contents, $data);
+
+        $this->helper->writeCodeFile($output_file_path, $output_file_contents);
+    }
+
+
+    function writeModuleXmlFile()
+    {
+        $template_file_path = ROOT.'templates/xml/module.tpl';
+        $output_file_path = $this->helper->getModuleBasePath().'etc'.DS.'module.xml';
+
+        $template_file_contents = file_get_contents($template_file_path);
+        $data = array(
+            'package_name'=>$this->package_name,
+            'module_name'=>$this->module_name
         );
 
         $output_file_contents = $this->helper->replacePlaceHolders($template_file_contents, $data);
