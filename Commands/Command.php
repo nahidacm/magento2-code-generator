@@ -20,8 +20,8 @@ abstract class Command
     function __construct($argv)
     {
         $this->params = $argv;
-        $this->package_name = $argv[2];
-        $this->module_name = $argv[3];
+        $this->package_name = isset($argv[2])?$argv[2]:null;
+        $this->module_name = isset($argv[3])?$argv[3]:null;
         $this->app_code_path = MAGENTO_ROOT.'app'.DS.'code'.DS;
         $this->helper = new CommandHelper($this);
     }
